@@ -38,7 +38,6 @@ class{
                 
                 `;
                 nclass.background=this;
-                console.log(this);
                 nclass.SetUp();
 
             }

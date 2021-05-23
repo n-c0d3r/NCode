@@ -8,8 +8,8 @@ class{
     }
     SetUp(){
         this.UseNClasses([
-            "client.user",
             "client.firebase",
+            "client.user",
             "client.header",
             "client.home.background",
             "client.home"

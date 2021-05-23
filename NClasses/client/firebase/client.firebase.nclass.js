@@ -11,13 +11,10 @@ class{
 
     Start(){
 
-        var nclass=this;
-
-        var test = async function(){
-            var response = await nclass.firebase.firestore().collection('users').get();
-            console.log(response);
-        } 
-        test();
+        
     }
+
+    
+
 
 }

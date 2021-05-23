@@ -10,7 +10,6 @@ class{
     }
 
     Start(){
-
     }
 
 
@@ -66,7 +65,6 @@ class{
                 
                 `;
                 nclass.avt=document.getElementById("avt");
-                
                 nclass.SetUpAvt();
 
             }
@@ -83,7 +81,7 @@ class{
 
     SetUpAvt(){
         var userNClass=framework.ImportNClass("client.user");
-        userNClass.SetUpAvt();
+        userNClass.SetAvt();
     }
 
 
