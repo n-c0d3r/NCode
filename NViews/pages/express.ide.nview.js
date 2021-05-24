@@ -15,7 +15,7 @@ class{
             "client.home.background",
             "client.home"
         ]);
-        this.Routing("/home");
+        this.Routing("/ide");
         
     }
 

@@ -14,7 +14,13 @@ class{
 
 
     CreateWebComponent(){
+        var hue=localStorage.getItem("hueHeader");
+        if(hue!=null){
 
+        }
+        else{
+            hue=0;
+        }
         var style=`
             <style>
                 #header{
@@ -22,7 +28,7 @@ class{
                     width:60px;
                     padding-top:60px;
                     //background-color:rgb(9, 13, 15);
-                    background-color:rgba(170, 180, 190,0.05);
+                    background-color:hsla(${210+hue}, 13%, 100%,0.05);
                     position:fixed;
                     top:0;
                     left:0;
@@ -31,7 +37,7 @@ class{
                 }
 
                 #header:hover{
-                    background-color:rgba(170, 180, 190,0.1);
+                    background-color:hsla(${210+hue}, 13%, 100%, 0.85);
                     width:150px;
                 }
 
@@ -39,9 +45,7 @@ class{
                     right:55px;
                 }
 
-                body{
-                    background-color:rgb(3, 5, 6);
-                }
+                
 
                 #avt{
                     position:absolute;
@@ -60,7 +64,7 @@ class{
 
         var nclass=this;
 
-        this.hlmlElement=class extends HTMLElement{
+        this.htmlElement=class extends HTMLElement{
             constructor(){
                 super();
             }
@@ -88,7 +92,7 @@ class{
 
         }
 
-        customElements.define("n-header",this.hlmlElement);
+        customElements.define("n-header",this.htmlElement);
 
     }
 

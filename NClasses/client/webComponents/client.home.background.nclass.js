@@ -10,26 +10,36 @@ class{
     }
 
     Start(){
-
+        this.Apply();
     }
 
+    Apply(){
+        this.bg=new this.htmlElement();
+        document.body.appendChild(this.bg);
+    }
 
     CreateWebComponent(){
 
+        var hue=localStorage.getItem("hueHomeBg");
+        if(hue!=null){
+
+        }
+        else{
+            hue=0;
+        }
+
         var style=`
             <style>
-            
+                body{
+                    background-color:hsla(${195+hue}, 50%, 2%, 1);
+                }
             </style>
         `;
 
-        var nclass=this;
 
-        this.hlmlElement=class extends HTMLElement{
+        this.htmlElement=class extends HTMLElement{
             constructor(){
                 super();
-            }
-
-            connectedCallback(){
                 this.innerHTML=`
                 
                     ${style}
@@ -37,25 +47,18 @@ class{
                     
                 
                 `;
-                nclass.background=this;
-                nclass.SetUp();
-
             }
 
+            connectedCallback(){
+                
 
-            
-
-
+            }
         }
 
-        customElements.define("n-home-background",this.hlmlElement);
+        customElements.define("n-home-background",this.htmlElement);
 
     }
 
-
-    SetUp(){
-
-    }
     
 
 }

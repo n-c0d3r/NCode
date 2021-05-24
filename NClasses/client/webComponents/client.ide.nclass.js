@@ -17,13 +17,17 @@ class{
 
         var style=`
             <style>
-                
+                #ide{
+                    position:fixed;
+                    height:100vh;
+                    width:100vw;
+                }
             </style>
         `;
 
         var nclass=this;
 
-        this.hlmlElement=class extends HTMLElement{
+        this.htmlElement=class extends HTMLElement{
             constructor(){
                 super();
             }
@@ -33,6 +37,10 @@ class{
                 
                     ${style}
                 
+                    <div id="ide">
+                    </div>
+
+
                 `;
 
             }
@@ -43,7 +51,7 @@ class{
 
         }
 
-        customElements.define("n-ide",this.hlmlElement);
+        customElements.define("n-ide",this.htmlElement);
 
     }
 
