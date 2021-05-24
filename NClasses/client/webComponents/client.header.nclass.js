@@ -18,15 +18,25 @@ class{
         var style=`
             <style>
                 #header{
-                    height:50px;
-                    width:calc(100vw - 10px);
-                    background-color:rgb(7, 11, 13);
-                    border-bottom-right-radius: 25px;
-                    border-top-right-radius: 25px;
+                    height:100vh;
+                    width:60px;
+                    padding-top:60px;
+                    //background-color:rgb(9, 13, 15);
+                    background-color:rgba(170, 180, 190,0.05);
                     position:fixed;
-                    top:10px;
+                    top:0;
                     left:0;
                     z-index:999;
+                    transition: 0.3s;
+                }
+
+                #header:hover{
+                    background-color:rgba(170, 180, 190,0.1);
+                    width:150px;
+                }
+
+                #header:hover #avt{
+                    right:55px;
                 }
 
                 body{
@@ -35,12 +45,15 @@ class{
 
                 #avt{
                     position:absolute;
-                    right:0;
+                    right:5px;
+                    top:5px;
                     height:50px;
                     width:50px;
                     background-size:cover;
                     border-radius:25px;
+                    transition:0.3s;
                 }
+
 
             </style>
         `;

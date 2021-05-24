@@ -1,6 +1,6 @@
 [Render("nf-js")]
 
-[NView("home")]
+[NView("ide")]
 
 class{
     constructor(){
@@ -11,7 +11,7 @@ class{
             "client.firebase",
             "client.user",
             "client.header",
-            "client.newfeed",
+            "client.ide",
             "client.home.background",
             "client.home"
         ]);
