@@ -7,6 +7,7 @@ class{
 
     SetUp(){
         this.firebase=window.firebase;
+        
     }
 
     Start(){

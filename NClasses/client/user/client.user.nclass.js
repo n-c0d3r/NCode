@@ -14,10 +14,48 @@ class{
         
     }
 
+    Login(){
+
+        var nclass=this;
+        var loginFormNClass=framework.ImportNClass("client.loginForm");
+
+        var email=loginFormNClass.emailInput.value;
+        var password=loginFormNClass.passwordInput.value;
+
+        var auth=framework.ImportNClass("client.firebase").firebase.auth();
+        auth.signInWithEmailAndPassword(email,password)
+        .then(user=>{
+            loginFormNClass.HideErr();
+            var userId=(user.user.uid);
+            localStorage.setItem("userId",userId);
+            localStorage.setItem("isLoggedIn",true);
+            loginFormNClass.LoginDone();
+            window.location.href=window.origin+'/home';
+            
+        })
+        .catch(err=>{
+            loginFormNClass.Err(err.message);
+        });
+        
+    }
+
+
+    LogOut(){
+        var auth=framework.ImportNClass("client.firebase").firebase.auth();
+        auth.signOut();
+        localStorage.setItem("isLoggedIn",false);
+        window.location.href=window.origin+'/login';
+    }
+
+
     CheckIsLoggedIn(){
         this.isLoggedIn=localStorage.getItem("isLoggedIn");
         if(this.isLoggedIn==null){
             this.isLoggedIn=false;
+            
+        }
+        if((this.isLoggedIn=="false" || this.isLoggedIn==false) && framework.nviewPath!="express.login"){
+            window.location.href=window.origin+"/login";
         }
     }
 
@@ -42,7 +80,6 @@ class{
         if(this.isLoggedIn){
             this.GetUserPublicData()
             .then(userAvatarId=>{
-                console.log(userAvatarId);
                 var image_url=`/images/avatar/avt-${userAvatarId}.png`;
                 avt.style.backgroundImage=`url(${image_url})`;
             });            

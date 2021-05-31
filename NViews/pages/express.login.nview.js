@@ -1,6 +1,6 @@
 [Render("nf-js")]
 
-[NView("home")]
+[NView("login")]
 
 class{
     constructor(){
@@ -10,12 +10,10 @@ class{
         this.UseNClasses([
             "client.firebase",
             "client.user",
-            "client.header",
-            "client.newfeed",
-            "client.background",
-            "client.home"
+            "client.loginForm",
+            "client.background"
         ]);
-        this.Routing("/home");
+        this.Routing("/login");
         
     }
 
@@ -23,7 +21,7 @@ class{
     }
 
     OnRequest(req,res){
-        this.Render("pages/home.ejs");
+        this.Render("pages/login.ejs");
     }
 
 }

@@ -12,7 +12,7 @@ class{
             "client.user",
             "client.header",
             "client.ide",
-            "client.home.background",
+            "client.background",
             "client.home"
         ]);
         this.Routing("/ide");
@@ -23,7 +23,7 @@ class{
     }
 
     OnRequest(req,res){
-        this.Render("pages/home.ejs");
+        this.Render("pages/ide.ejs");
     }
 
 }
