@@ -111,9 +111,9 @@ class{
                     height:40px;
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                     font-size:0px;
-                    background-color:rgba(255,255,255,0.2);
+                    background-color:rgba(255,255,255,0.1);
                     position:absolute;
-                    color:white;
+                    color:rgba(255,255,255,0.7);
                     right:0;
                     width:0px;
                     display:flex;
@@ -196,6 +196,42 @@ class{
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="header-pageA-container">
+                                <div class="header-pageA" style="background-image:url('/images/icons/chat.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        Chat
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="header-pageA-container">
+                                <div class="header-pageA" style="background-image:url('/images/icons/friendList.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        Friend List
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="header-pageA-container">
+                                <div class="header-pageA" style="background-image:url('/images/icons/bell.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        Notification
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="header-pageA-container">
+                                <div class="header-pageA" style="background-image:url('/images/icons/setting.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        Setting
+                                    </div>
+                                </div>
+                            </div>
+
                             
                         </div>
                         
