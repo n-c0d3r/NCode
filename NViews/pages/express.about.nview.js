@@ -8,6 +8,7 @@ class{
     }
     SetUp(){
         this.UseNClasses([
+            "client.webComponents"
         ]);
         this.Routing("/about");
         

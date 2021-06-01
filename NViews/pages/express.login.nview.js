@@ -10,8 +10,9 @@ class{
         this.UseNClasses([
             "client.firebase",
             "client.user",
-            "client.loginForm",
-            "client.background"
+            "client.webComponents",
+            "client.webComponents.loginForm",
+            "client.webComponents.background"
         ]);
         this.Routing("/login");
         

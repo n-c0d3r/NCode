@@ -17,7 +17,7 @@ class{
     Login(){
 
         var nclass=this;
-        var loginFormNClass=framework.ImportNClass("client.loginForm");
+        var loginFormNClass=framework.ImportNClass("client.webComponents.loginForm");
 
         var email=loginFormNClass.emailInput.value;
         var password=loginFormNClass.passwordInput.value;
@@ -74,7 +74,7 @@ class{
     
 
     async SetAvt(){
-        this.header=framework.ImportNClass("client.header");
+        this.header=framework.ImportNClass("client.webComponents.header");
         var avt=this.header.avt;
 
         if(this.isLoggedIn){

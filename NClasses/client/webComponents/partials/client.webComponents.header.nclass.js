@@ -84,7 +84,8 @@ class{
                 }
 
                 .header-pageA{
-                    margin-top:5px;
+                    margin-top:3px;
+                    margin-bottom:3px;
                     width:50px;
                     height:50px;
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -99,9 +100,12 @@ class{
                 }
 
                 .header-pageA:hover{
-                    border:solid 2px rgba(0.5,0.5,0.5,0.5);
-                    margin-top:5px;
+                    margin-top:1px;
+                    border:groove 2px rgba(0.5,0.5,0.5,0.5);
                     background-size:cover;
+                    border-radius:27px;
+                    margin-top:1px;
+                    margin-bottom:1px;
                 }
                 
 
@@ -190,7 +194,7 @@ class{
                             </div>
 
                             <div class="header-pageA-container">
-                                <div class="header-pageA" style="background-image:url('/images/icons/newfeed.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                <div class="header-pageA" style="background-image:url('/images/icons/newfeed.png');" onclick="window.location.href='${window.origin+"/newfeed"}';">
                                     <div class="header-pageA-text">
                                         Newfeed
                                     </div>
@@ -198,7 +202,7 @@ class{
                             </div>
 
                             <div class="header-pageA-container">
-                                <div class="header-pageA" style="background-image:url('/images/icons/chat.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                <div class="header-pageA" style="background-image:url('/images/icons/chat.png');" onclick="window.location.href='${window.origin+"/chat"}';">
                                     <div class="header-pageA-text">
                                         Chat
                                     </div>
@@ -207,7 +211,7 @@ class{
 
                             
                             <div class="header-pageA-container">
-                                <div class="header-pageA" style="background-image:url('/images/icons/friendList.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                <div class="header-pageA" style="background-image:url('/images/icons/friendList.png');" onclick="window.location.href='${window.origin+"/friendList"}';">
                                     <div class="header-pageA-text">
                                         Friend List
                                     </div>
@@ -216,7 +220,7 @@ class{
 
                             
                             <div class="header-pageA-container">
-                                <div class="header-pageA" style="background-image:url('/images/icons/bell.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                <div class="header-pageA" style="background-image:url('/images/icons/bell.png');" onclick="window.location.href='${window.origin+"/notification"}';">
                                     <div class="header-pageA-text">
                                         Notification
                                     </div>

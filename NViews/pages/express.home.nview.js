@@ -10,10 +10,11 @@ class{
         this.UseNClasses([
             "client.firebase",
             "client.user",
-            "client.header",
-            "client.newfeed",
-            "client.background",
-            "client.home"
+            "client.webComponents",
+            "client.webComponents.header",
+            "client.webComponents.background",
+            "client.pages",
+            "client.pages.home"
         ]);
         this.Routing("/home");
         

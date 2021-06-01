@@ -1,19 +1,14 @@
 [Render("nf-js")]
 
-[NClass("newfeed")]
+[NClass("pages")]
 
 class{
     constructor(){}
 
     SetUp(){
-        this.CreateWebComponent();
     }
 
     Start(){
-
-    }
-
-    CreateWebComponent(){
 
     }
 

@@ -1,6 +1,6 @@
 [Render("nf-js")]
 
-[NView("ide")]
+[NView("chat")]
 
 class{
     constructor(){
@@ -14,9 +14,9 @@ class{
             "client.webComponents.header",
             "client.webComponents.background",
             "client.pages",
-            "client.pages.ide"
+            "client.pages.chat"
         ]);
-        this.Routing("/ide");
+        this.Routing("/chat");
         
     }
 
@@ -24,7 +24,7 @@ class{
     }
 
     OnRequest(req,res){
-        this.Render("pages/ide.ejs");
+        this.Render("pages/chat.ejs");
     }
 
 }
