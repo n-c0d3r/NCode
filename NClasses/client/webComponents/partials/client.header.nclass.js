@@ -41,7 +41,7 @@ class{
 
                 #header:hover{
                     background-color:hsla(${180+parseInt(hue)}, 60%, 100%, 1);
-                    width:150px;
+                    //width:150px;
                 }
 
                 #header:hover #avt{
@@ -62,7 +62,7 @@ class{
                 }
 
                 #header:hover #log-out{
-                    right:55px;
+                    //right:55px;
                 }
 
                 #log-out:hover{
@@ -95,6 +95,40 @@ class{
                     background-size:cover;
                     transition:0.2s;
                     border-radius:25px;
+                    
+                }
+
+                .header-pageA:hover{
+                    border:solid 2px rgba(0.5,0.5,0.5,0.5);
+                    margin-top:5px;
+                    background-size:cover;
+                }
+                
+
+                .header-pageA-text{
+                    padding-left:5px;
+                    padding-right:5px;
+                    height:40px;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    font-size:0px;
+                    background-color:rgba(255,255,255,0.2);
+                    position:absolute;
+                    color:white;
+                    right:0;
+                    width:0px;
+                    display:flex;
+                    flex-flow:row;
+                    justify-content:space-around;
+                    border-top-right-radius:5px;
+                    border-bottom-right-radius:5px;
+                    transition:0.2s;
+                }
+
+                .header-pageA:hover .header-pageA-text{
+                    font-size:medium;
+                    width:100px;
+                    right:-100px;
+                    padding-top:10px;
                 }
 
                 .header-pageA-container{
@@ -141,11 +175,25 @@ class{
                         <div id="header-body">
                             <div class="header-pageA-container">
                                 <div class="header-pageA" style="background-image:url('/images/icons/home.png');" onclick="window.location.href='${window.origin+"/home"}';">
+                                    <div class="header-pageA-text">
+                                        Home
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="header-pageA-container">
                                 <div class="header-pageA" style="background-image:url('/images/icons/ide.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        IDE
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="header-pageA-container">
+                                <div class="header-pageA" style="background-image:url('/images/icons/newfeed.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                    <div class="header-pageA-text">
+                                        Newfeed
+                                    </div>
                                 </div>
                             </div>
                             
