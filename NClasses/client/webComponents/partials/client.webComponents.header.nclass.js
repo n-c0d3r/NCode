@@ -100,12 +100,9 @@ class{
                 }
 
                 .header-pageA:hover{
-                    margin-top:1px;
-                    border:groove 2px rgba(0.5,0.5,0.5,0.5);
-                    background-size:cover;
-                    border-radius:27px;
-                    margin-top:1px;
-                    margin-bottom:1px;
+                    //border:groove 2px rgba(0.5,0.5,0.5,0.5);
+                    background-size:55px;
+                    border-radius:25px;
                 }
                 
 
@@ -229,7 +226,7 @@ class{
 
                             
                             <div class="header-pageA-container">
-                                <div class="header-pageA" style="background-image:url('/images/icons/setting.png');" onclick="window.location.href='${window.origin+"/ide"}';">
+                                <div class="header-pageA" style="background-image:url('/images/icons/setting.png');" onclick="window.location.href='${window.origin+"/setting"}';">
                                     <div class="header-pageA-text">
                                         Setting
                                     </div>
