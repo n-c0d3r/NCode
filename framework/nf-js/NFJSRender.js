@@ -29,11 +29,10 @@ var renderer=(framework)=>{
         
             var tagTemplate=nf_js_tags[tagInfo.name];
 
-            //console.log(nf_js_tags[tagInfo.name],tagInfo.name);
             
         
             for(var i=argsEnd;i>=argsStart;i--){
-                if(code[i]==')'){
+                if(tag[i]==')'){
                     argsEnd=i-1;
                     break;
                 }
@@ -203,9 +202,7 @@ var renderer=(framework)=>{
             else{
                 var compiledCode=renderedResult.compiledCode;
 
-
                 exprts=Function(compiledCode)();
-
             }
 
             
@@ -228,7 +225,7 @@ var renderer=(framework)=>{
 
             var renderedResult=this.JSRender(code,filepath,dirname,false);
 
-            var compiledCode=renderedResult.compiledCode;            
+            var compiledCode=renderedResult.compiledCode;   
             try{
 
                 return compiledCode;

@@ -78,8 +78,11 @@ module.exports=(option)=>{ return new (
 
             this.StartCustomers();
 
+            this.customRequireForNClassesAndNViews=new Object();
+
             this.Build();
 
+            this.CustomRequireForNClassesAndNViews();
             
             this.InstanceForClient();
 
@@ -88,6 +91,25 @@ module.exports=(option)=>{ return new (
             this.Start();
         
             this.Start_afterImportNClassEvents();
+        }
+
+        AddCustomRequires(requires){
+            var keys=Object.keys(requires);
+            for(var i=0;i<keys.length;i++){
+                var key=keys[i];
+                this.customRequireForNClassesAndNViews[key]=requires[key];
+            }
+        }
+
+        CustomRequireForNClassesAndNViews(){
+            var keys=Object.keys(this.customRequireForNClassesAndNViews);
+            this.modules=new Object();
+            for(var i=0;i<keys.length;i++){
+                var key=keys[i];
+                var requirePath=this.customRequireForNClassesAndNViews[key];
+                var module=require(requirePath);
+                this.modules[key]=module;
+            }
         }
 
         Start_afterImportNClassEvents(){
@@ -213,6 +235,11 @@ module.exports=(option)=>{ return new (
 
         ImportWithFilePath(NClassPath,path){
 
+        }
+
+        customRequire(module){
+            //return require(module);
+            return require("module");
         }
     }
 )};

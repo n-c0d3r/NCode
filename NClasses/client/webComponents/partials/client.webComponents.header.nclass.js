@@ -94,7 +94,7 @@ class{
                     flex-flow:row;
                     justify-content:space-around;
                     background-size:cover;
-                    transition:0.2s;
+                    transition:0.5s;
                     border-radius:25px;
                     
                 }

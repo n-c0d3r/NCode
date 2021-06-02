@@ -30,5 +30,9 @@ var framework=new class{
         return result;
     }
 
+    AddCustomRequires(){
+        
+    }
+
 }();
 
