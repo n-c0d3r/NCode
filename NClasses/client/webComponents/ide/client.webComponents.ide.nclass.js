@@ -94,6 +94,10 @@ class{
                     outline:0px;
                 }
                 #ide-code-fileList{
+                    padding-left:25px;
+                    color:rgb(150,150,150);
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    
                     background-size:calc(100vw - 260px);
                     background-image:url('/images/bg5.png');
                     height:30px;

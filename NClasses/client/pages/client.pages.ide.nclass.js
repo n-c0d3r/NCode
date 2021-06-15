@@ -155,10 +155,13 @@ class{
 
                 if(show){
                     textContentElement.textContent=node.file.name;
+                    textContentElement.style.color="rgb(180,180,180)";
 
                 }
                 else{
                     textContentElement.textContent=customName;
+                    textContentElement.style.fontSize="large";
+                    textContentElement.style.fontWeight="600";
 
                 }
                 var itemType="folder";
@@ -781,6 +784,19 @@ class{
             input.value=item.data;
             input.disabled=false;
             input.path=filePath;
+
+            var parsedForShowPath="Storage/";
+
+            var parts=filePath.split('/');
+
+            for(var i=1;i<parts.length-1;i++){
+                parsedForShowPath+=parts[i]+"/";
+            }
+
+            parsedForShowPath+=parts[parts.length-1];
+
+            var fileNameOpened=document.getElementById("ide-code-fileList");
+            fileNameOpened.textContent=parsedForShowPath;
             
             localStorage.setItem("openedFilePath",filePath);
             localStorage.setItem("filesInIDE",JSON.stringify(this.filesInIDE));
@@ -812,6 +828,7 @@ class{
 
     client__SaveDataDone(){
         alert("Saved");
+
     }
     
 }
