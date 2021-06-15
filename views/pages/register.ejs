@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/login-style.css">
+
+
+    <div class="firebase">
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyCVvDpmi49pf5h_Hvirh4tNyKFXxPkaRQU",
+                authDomain: "ncode-56123.firebaseapp.com",
+                projectId: "ncode-56123",
+                storageBucket: "ncode-56123.appspot.com",
+                messagingSenderId: "462706643653",
+                appId: "1:462706643653:web:eab361ff594c0bb63cd6ac"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            
+            window.firebase=firebase;
+        </script>
+
+
+
+        </script>
+    </div>
+
+
+
+
+
+</head>
+<body>
+    
+    <%- framework%>
+    <n-register-form></n-register-form>
+</body>
+</html>

@@ -110,6 +110,15 @@ class{
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 }
 
+                #gotoRegister{
+                    color:white;
+                    font-size:20px;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    position:fixed;
+                    right:calc(50vw - 150px);
+                    bottom:20px;
+                }
+
 
             </style>
         `;
@@ -163,6 +172,8 @@ class{
                         </div>
                     </div>
 
+                    <a href="${window.origin}/register" id="gotoRegister">You dont have account? Register</a>
+
                 `;
 
                 nclass.rightPart=document.getElementById(`loginForm-rightPart`);
@@ -202,5 +213,6 @@ class{
         nclass.rightPart.style.backgroundColor='rgb(90,255,100)';
 
     }
+
 
 }

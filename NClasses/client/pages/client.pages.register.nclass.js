@@ -1,15 +1,15 @@
 [Render("nf-js")]
 
-[NClass("webComponent")]
+[NClass("register")]
 
 class{
     constructor(){}
 
     SetUp(){
-
     }
 
     Start(){
-        
+
     }
+
 }

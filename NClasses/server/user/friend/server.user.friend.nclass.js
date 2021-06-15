@@ -9,8 +9,8 @@ class{
         
     }
 
-    async GetFriendListFromFireStore(){
-
+    async SetUpFriendList(){
+        
     }
 
     Start(){

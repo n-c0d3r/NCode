@@ -13,7 +13,7 @@ class{
         this.SetUpAdmin();
     }
 
-    SetUpAdmin(){
+    async SetUpAdmin(){
         var nclass=this;
         this.ReadPrivateKey();
         this.admin=modules.firebaseAdmin;
@@ -30,6 +30,9 @@ class{
         var firestoreNClass=framework.ImportNClass("server.firebase.firestore");
         firestoreNClass.fireStore=fireStore;
         firestoreNClass.SetUpFireStore();
+
+        var userDataNClass=framework.ImportNClass('server.user.data');
+        userDataNClass.GetFromFirestore();
     }
 
     ReadPrivateKey(){

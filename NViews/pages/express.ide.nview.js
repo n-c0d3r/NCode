@@ -13,6 +13,8 @@ class{
             "client.webComponents",
             "client.webComponents.header",
             "client.webComponents.background",
+            "client.webComponents.ide",
+            "client.webComponents.ide.filesManage",
             "client.pages",
             "client.pages.ide"
         ]);

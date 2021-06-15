@@ -54,7 +54,7 @@ class{
             this.isLoggedIn=false;
             
         }
-        if((this.isLoggedIn=="false" || this.isLoggedIn==false) && framework.nviewPath!="express.login"){
+        if((this.isLoggedIn=="false" || this.isLoggedIn==false) && framework.nviewPath!="express.login" && framework.nviewPath!="express.register"){
             window.location.href=window.origin+"/login";
         }
     }
