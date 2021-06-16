@@ -97,16 +97,32 @@ class{
             "childs":[]
         }
         var nclass=this;
+        this.StopWatchFiles(uid);
         this.WatchFile(framework.userStoragesDirPath+"/"+uid,uid);
         
         rootNode=this.GetFilesOrDirectoriesFromNode(uid,rootNode);
         return rootNode;
     }
 
+    StopWatchFiles(uid){
+        var watchers=this.clientSockets[uid].filesWatcher;
+        if(watchers!=null){
+            for(var watcher of watchers){
+                watcher.close();
+            }
+            this.clientSockets[uid].filesWatcher=[];
+        }
+    }
+
     WatchFile(path,uid){
+        if(this.clientSockets[uid]!=null){
+            if(this.clientSockets[uid].filesWatcher==null){
+                this.clientSockets[uid].filesWatcher=[];
+            }
+        }
         var fs=modules.fs;
         try{
-            fs.watch(path,{},event=>{
+            var watcher = fs.watch(path,{},event=>{
                 const newUid=uid;
                 var clientSocket=this.clientSockets[newUid];
                 try{
@@ -117,6 +133,7 @@ class{
     
                 }
             }).on('error', ()=>{});
+            this.clientSockets[uid].filesWatcher.push(watcher);
         }
         catch{
 

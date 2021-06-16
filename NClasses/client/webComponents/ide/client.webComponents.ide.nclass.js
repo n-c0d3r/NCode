@@ -90,6 +90,66 @@ class{
                     width:calc(100vw - 260px);        
                     background-color:rgb(10,10,10);
                 }
+                #ide-terminal-logs{
+                    height:280px;
+                    width:calc(100vw - 260px);   
+                    overflow-x:auto;
+                    overflow-y:auto;
+                    scrollbar-face-color: #646464;
+                    scrollbar-base-color: #646464;
+                    scrollbar-3dlight-color: #646464;
+                    scrollbar-highlight-color: #646464;
+                    scrollbar-track-color: #000;
+                    scrollbar-arrow-color: #000;
+                    scrollbar-shadow-color: #646464;
+                    scrollbar-dark-shadow-color: #646464;
+                }
+                #ide-terminal-logs::-webkit-scrollbar { width: 12px; height: 12px;}
+                #ide-terminal-logs::-webkit-scrollbar-button {  background-color: #666; border-radius: 6px;width:0px;height:0px;}
+                #ide-terminal-logs::-webkit-scrollbar-track {  background-color: #646464;}
+                #ide-terminal-logs::-webkit-scrollbar-track-piece { background-color: #000;}
+                #ide-terminal-logs::-webkit-scrollbar-thumb { height: 50px; background-color: #111; border-radius: 2px;}
+                #ide-terminal-logs::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0);}}
+                #ide-terminal-logs::-webkit-resizer { background-color: rgba(0,0,0,0);}
+                .ide-terminal-log{
+                    height:30px;
+                    display:flex;
+                    flex-flow:row;
+                    padding-left:10px;
+                    padding-right:10px;
+                    padding-top:5px;
+                    padding-bottom:5px;
+                }
+                .ide-terminal-log-title{
+                    color:rgb(60,60,60);
+                    font-weight:300;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    margin-left:10px;
+                    margin-right:10px;
+                }
+                .ide-terminal-log-content{
+                    font-weight:200;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    margin-left:10px;
+                    margin-right:10px;
+                }
+                #ide-terminal-input{
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    
+                    width:calc(100vw - 260px);  
+                    background-color:rgb(20,20,20);  
+                    border:none;
+                    height:20px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    padding-top:5px;
+                    padding-bottom:5px;
+                    color:white;
+                }
+                #ide-terminal-input:focus{
+                    border:none;
+                    outline:0;
+                }
                 #ide-code-input:focus{
                     outline:0px;
                 }
@@ -143,6 +203,12 @@ class{
                             <textarea id="ide-code-input" spellcheck="false" contenteditable="true">
                             </textarea>
                             <div id="ide-terminal">
+                                <div style="width:100%;">
+                                    <input type="text" id="ide-terminal-input"/>
+                                </div>
+                                <div id="ide-terminal-logs">
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,6 +234,7 @@ class{
 
     
     Update(){
+        var nclass=this;
         var idePageNClass=framework.ImportNClass("client.pages.ide");
         var ideCodeInput=document.getElementById("ide-code-input");
         ideCodeInput.TrySave=function(){
@@ -188,6 +255,19 @@ class{
         this.ideCodeInput=ideCodeInput;
         var ideExplorer=document.getElementById("ide-explorer");
         this.ideExplorer=ideExplorer;
+        this.ideTerminalInput=document.getElementById("ide-terminal-input");
+        this.ideTerminalInput.addEventListener("keydown",(e)=>{
+            if(e.key=="Enter"){
+                nclass.ExecuteCommandFromTerminal();
+            }
+        });
+    }
+
+    ExecuteCommandFromTerminal(){
+        var command=this.ideTerminalInput.value;
+        var terminal=framework.ImportNClass("client.terminal");
+        terminal.ExecuteCommand(command);
+        this.ideTerminalInput.value="";
     }
 
 }

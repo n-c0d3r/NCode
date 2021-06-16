@@ -15,6 +15,8 @@ class{
             "client.webComponents.background",
             "client.webComponents.ide",
             "client.webComponents.ide.filesManage",
+            "client.terminal",
+            "client.terminal.defaultCommands",
             "client.pages",
             "client.pages.ide"
         ]);
