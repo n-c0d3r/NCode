@@ -1,21 +1,49 @@
 [Render("nf-js")]
 
+[Require("fs","fs")]
+
 [NClass("data")]
 
 class{
     constructor(){}
 
     SetUp(){
-
+        this.ReadUsersData();
     }
 
     Start(){
         
     }
 
-    async GetFromFirestore(){
-        var firestore=framework.ImportNClass('server.firebase.firestore').firestore;
-        
+    GetFromFirestore(){
+
+    }
+
+    ReadUsersData(){
+        var fs=modules.fs;
+        var path=framework.usersDataDirPath;
+        this.users=JSON.parse(fs.readFileSync(path).toString());
+    }
+
+    CreateUserData(uid,name){
+        var newUser={
+            'friends':new Object(),
+            'friendRequests':new Object()
+        };
+        this.users[uid]=newUser;
+        this.SaveUsersData();
+    }
+
+    SaveUsersData(){
+        var fs=modules.fs;
+        var path=framework.usersDataDirPath;
+        try{
+            fs.writeFileSync(path,JSON.stringify(this.users));
+
+        }
+        catch{
+
+        }
     }
 
 }

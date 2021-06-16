@@ -20,6 +20,7 @@ class{
         //Create Folder
         var path=`${framework.userStoragesDirPath}/${uid}`;
         fs.mkdirSync(path);
+        fs.writeFileSync(path+"/commands","");
     }
 
 }

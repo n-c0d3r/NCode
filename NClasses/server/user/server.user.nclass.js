@@ -26,6 +26,9 @@ class{
                 "avatarId":0,
                 "name":name
             });
+
+            var dataNClass=framework.ImportNClass("server.user.data");
+            dataNClass.CreateUserData(user.uid,name);
             
             var storageNClass=framework.ImportNClass("server.user.storage");
             storageNClass.CreateUserStorage(user.uid);
