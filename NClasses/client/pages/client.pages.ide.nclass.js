@@ -141,7 +141,6 @@ class{
 
             var newNode=document.createElement("div");
             newNode.className="ide-file-in-explorer";
-
             newNode.file=node.file;
 
             if(true){
@@ -573,6 +572,67 @@ class{
                     }, false);
                     
                     var btns=[
+
+
+                        (()=>{
+                            var btn=document.createElement("div");
+                            var parts=newNode.file.name.split('.');
+                            if(parts[parts.length-1]=="js"){
+                                btn.style=`
+                                padding-left:10px;
+                                font-size:13px;
+                                -webkit-touch-callout: none;
+                                -webkit-user-select: none;
+                                -khtml-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                color:rgb(200,200,200);
+                                display:flex;
+                                flex-flow:row;
+                                width:300px;
+                                margin-top:10px;
+                                margin-bottom:10px;
+                            `;
+                            
+                            var textElement=document.createElement("div");
+                            textElement.textContent="JS Execute";
+                            
+                            btn.appendChild(textElement);
+
+
+                            var done=function(){
+                                document.body.contextMenu.style=`
+                                display:none;
+                                transition:5s;
+                                background-color:rgba(0,0,0,0);
+                                `;
+                                document.body.contextMenu.status="un-visible";
+                                var terminal=framework.ImportNClass("client.terminal");
+                                var path=[...newNode.file.path];
+                                path[0]="storage";
+                                var strPath=path[0];
+                                for(var i=1;i<path.length;i++){
+                                    strPath+="/"+path[i];
+                                }
+                                var command=`@js.execute:${strPath}`;
+                                terminal.ExecuteCommand(command);
+                            }
+
+                            textElement.addEventListener("click",()=>{
+                                done();
+                            });
+
+                            }
+                            else{
+                                
+                            }
+
+                            
+
+                            return btn;
+                        })(),
+
 
 
                         (()=>{
