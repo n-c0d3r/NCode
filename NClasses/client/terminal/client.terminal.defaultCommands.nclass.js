@@ -79,6 +79,22 @@ class{
                         `;
                         var ide_terminal_logs_element=document.getElementById("ide-terminal-logs");
                         ide_terminal_logs_element.innerHTML=innerHTML+ide_terminal_logs_element.innerHTML;
+                    },
+                    method:(input)=>{
+                        var defaultContentColor="rgb(120,120,120)";
+                        
+                        var innerHTML=`
+                        <div class="ide-terminal-log">
+                            <div class="ide-terminal-log-title">
+                                terminal log
+                            </div>
+                            <div class="ide-terminal-log-content" style="color:${defaultContentColor}">
+                                ${input}
+                            </div>
+                        </div>
+                        `;
+                        var ide_terminal_logs_element=document.getElementById("ide-terminal-logs");
+                        ide_terminal_logs_element.innerHTML=innerHTML+ide_terminal_logs_element.innerHTML;
                     }
                 }
             }
@@ -166,6 +182,37 @@ class{
         var finalCommandJS=`
         
         var defaultCommands=framework.ImportNClass("client.terminal.defaultCommands").defaultCommands;
+
+
+        var CreatePost=function(options,callback){
+            var post={
+                'owner':firebase.auth().currentUser.uid,
+                'innerHTML':''
+            }
+
+            Object.assign(post, options);
+
+            post.AddTitle=function(title){
+                post.innerHTML+='<h>'+title+'</h>';
+            }
+
+            post.AddContent=function(content){
+                var contentElement=document.createElement('div');
+                contentElement.textContent=content;
+                post.innerHTML+=(contentElement.innerHTML);
+            }
+
+            post.AddImage=function(imageUrl){
+                
+            }
+
+            post.Push=function(){
+                console.log(post);
+            }
+
+            return post;
+        }
+
 
         var Log=function(title,content,contentColor){
             defaultCommands.terminal.log.jsMethod(title,content,contentColor);

@@ -3,7 +3,9 @@
 [NClass("user")]
 
 class{
-    constructor(){}
+    constructor(){
+        this.clientSockets=new Object();
+    }
 
     SetUp(){
         this.CheckIsLoggedIn();
@@ -59,6 +61,28 @@ class{
         }
     }
 
+    SendFriendRequest(targetUid){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__SendFriendRequest(uid,targetUid);
+
+    }
+
+    server__SendFriendRequest(uid,targetUid){
+        var serverFriendNClass=framework.ImportNClass("server.user.friend");
+        serverFriendNClass.SendFriendRequest(uid,targetUid);
+    }
+
+    ApplyFriendRequest(targetUid){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__ApplyFriendRequest(uid,targetUid);
+
+    }
+
+    server__ApplyFriendRequest(uid,targetUid){
+        var serverFriendNClass=framework.ImportNClass("server.user.friend");
+        serverFriendNClass.ApplyFriendRequest(uid,targetUid);
+    }
+
     async GetUserPublicData(){
         if(this.isLoggedIn){
             var firebase=framework.ImportNClass("client.firebase").firebase;
@@ -71,7 +95,27 @@ class{
         }
     }
 
-    
+    DeclineFriendRequest(targetUid){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__DeclineFriendRequest(uid,targetUid);
+    }
+
+    server__DeclineFriendRequest(uid,targetUid){
+        var serverFriendNClass=framework.ImportNClass("server.user.friend");
+        serverFriendNClass.DeclineFriendRequest(uid,targetUid);
+
+    }
+
+    Unfriend(targetUid){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__Unfriend(uid,targetUid);
+    }
+
+    async server__Unfriend(uid,targetUid){
+        var serverFriendNClass=framework.ImportNClass("server.user.friend");
+        serverFriendNClass.Unfriend(uid,targetUid);
+
+    }
 
     async SetAvt(){
         this.header=framework.ImportNClass("client.webComponents.header");

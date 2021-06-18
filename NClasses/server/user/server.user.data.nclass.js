@@ -28,7 +28,9 @@ class{
     CreateUserData(uid,name){
         var newUser={
             'friends':new Object(),
-            'friendRequests':new Object()
+            'friendRequests':new Object(),
+            'sharedPosts':new Object(),
+            'posts':new Object()
         };
         this.users[uid]=newUser;
         this.SaveUsersData();
