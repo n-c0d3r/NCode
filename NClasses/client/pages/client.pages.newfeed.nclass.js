@@ -19,14 +19,27 @@ class{
         this.SetUpUI();
         var nclass=this;
         if(this.show1Post==null){
-            firebase.auth().onAuthStateChanged((user) => {
-                if (user) {
-                    var uid = user.uid;
-                    nclass.uid=uid;
-                    nclass.server__GetPosts(uid);
-                } else {
-                }
-            });
+            if(this.showOtherUserPosts==null){
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        var uid = user.uid;
+                        nclass.uid=uid;
+                        nclass.server__GetPosts(uid);
+                    } else {
+                    }
+                });
+            }
+            else{
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        var uid = user.uid;
+                        nclass.uid=uid;
+                        nclass.server__GetPosts(nclass.otherUid);
+                    } else {
+                    }
+                });
+            }
+            
         }
         else{
             this.postNClass=framework.ImportNClass('client.pages.newfeed.post');
@@ -39,12 +52,25 @@ class{
         var postsContainerElement=document.createElement('div');
         postsContainerElement.id=`newfeed-posts-container`;
 
+        var nclass=this;
+
         var styleElement=document.createElement('style');
         styleElement.textContent=`
         
             #newfeed-posts-container{
                 position:fixed;
-                top:calc(50% - 35vh);
+                ${
+
+                    (()=>{
+                        if(nclass.showOtherUserPosts==null){
+                            return "top:calc(50% - 35vh);";
+                        }
+                        else{
+                            return "top:calc(50% - 30vh);";
+                        }
+                    })()
+
+                }
                 right:calc(50% - 20vw);
                 width:40vw;
                 height:70vh;

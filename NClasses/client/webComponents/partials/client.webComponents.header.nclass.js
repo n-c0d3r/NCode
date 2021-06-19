@@ -224,14 +224,14 @@ class{
                                 </div>
                             </div>-->
 
-                            <!--
+                            
                             <div class="header-pageA-container">
                                 <div class="header-pageA" style="background-image:url('/images/icons/setting.png');" onclick="window.location.href='${window.origin+"/setting"}';">
                                     <div class="header-pageA-text">
                                         Setting
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
 
                             
                         </div>

@@ -17,6 +17,7 @@ class{
             "client.pages.home"
         ]);
         this.Routing("/home");
+        this.Routing("/");
         
     }
 

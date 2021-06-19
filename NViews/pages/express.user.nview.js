@@ -14,7 +14,8 @@ class{
             "client.webComponents.header",
             "client.webComponents.background",
             "client.pages",
-            "client.pages.userInfo"
+            "client.pages.userInfo",
+            "client.pages.newfeed"
         ]);
         this.Routing("/userInfo/:uid");
         
