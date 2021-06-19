@@ -152,7 +152,7 @@ class{
                 </div>
             </div>
             <div style=" width:100%;display:flex;flex-flow:row;justify-content:space-around;">
-                <div id="uid" onclick="framework.ImportNClass('client.pages.setting').ChangerClicked('name')">
+                <div id="uid">
                     (id: ${this.uid})
                 </div>
             </div>

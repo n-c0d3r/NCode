@@ -173,7 +173,7 @@ class{
                 font-size:20px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 font-weight:500;
-                background-color:rgb(100,150,255);
+                background-color:rgb(100,200,255);
                 margin-left:40px;
                 margin-right:40px;
                 border-radius:10px;
@@ -359,7 +359,7 @@ class{
                 var pInnerHTML=`
                     
                 <div class="room-participant">
-                    <div class="room-participant-avt" style="background-image:url('${url}');">
+                    <div class="room-participant-avt" style="background-image:url('${url}');" onclick="window.location.href=window.origin+'/userInfo/${participantId}'">
                         
                     </div>
                     <div class="room-participant-name">
@@ -423,7 +423,7 @@ class{
 
             var commentOwnerInnerHTML=`
             <div class="comment-owner-info" style="${flexDir}">
-                <div class="comment-owner-info-avt"  style="background-image:url('${ownerAvtUrl}');">
+                <div class="comment-owner-info-avt"  style="background-image:url('${ownerAvtUrl}');"  onclick="window.location.href=window.origin+'/userInfo/${comment.owner}'">
                 </div>
                 <div class="comment-owner-info-name">
                     ${chatRoom.participantsData[comment.owner].name}

@@ -89,28 +89,17 @@ class{
                     height:300px;
                     width:calc(100vw - 260px);        
                     background-color:rgb(10,10,10);
+
                 }
                 #ide-terminal-logs{
                     height:280px;
                     width:calc(100vw - 260px);   
                     overflow-x:auto;
                     overflow-y:auto;
-                    scrollbar-face-color: #646464;
-                    scrollbar-base-color: #646464;
-                    scrollbar-3dlight-color: #646464;
-                    scrollbar-highlight-color: #646464;
-                    scrollbar-track-color: #000;
-                    scrollbar-arrow-color: #000;
-                    scrollbar-shadow-color: #646464;
-                    scrollbar-dark-shadow-color: #646464;
                 }
-                #ide-terminal-logs::-webkit-scrollbar { width: 12px; height: 12px;}
-                #ide-terminal-logs::-webkit-scrollbar-button {  background-color: #666; border-radius: 6px;width:0px;height:0px;}
-                #ide-terminal-logs::-webkit-scrollbar-track {  background-color: #646464;}
-                #ide-terminal-logs::-webkit-scrollbar-track-piece { background-color: #000;}
-                #ide-terminal-logs::-webkit-scrollbar-thumb { height: 50px; background-color: #111; border-radius: 2px;}
-                #ide-terminal-logs::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0);}}
-                #ide-terminal-logs::-webkit-resizer { background-color: rgba(0,0,0,0);}
+                #ide-terminal-logs::-webkit-scrollbar{
+                    display:none;
+                }
                 .ide-terminal-log{
                     height:30px;
                     display:flex;

@@ -1,0 +1,1 @@
+ExecuteCommand('@terminal.log:hello')

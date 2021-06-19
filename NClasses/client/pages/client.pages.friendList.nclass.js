@@ -35,7 +35,7 @@ class{
                 height:70px;
                 overflow-y:auto;
                 z-index:10;
-                background-color:rgba(200,200,200,1);
+                background-color:rgba(0,255,200,1);
                 border-top-right-radius:10px;
                 border-bottom-right-radius:10px;
                 background-image:none;
@@ -113,6 +113,7 @@ class{
         afbtn.addEventListener('click',()=>{
             var uNClass=framework.ImportNClass("client.user")
             uNClass.SendFriendRequest(inputElement.value)
+            inputElement.value="";
         });
 
         btn.appendChild(afbtn);
@@ -179,7 +180,7 @@ class{
                 right:0;
                 overflow-y:auto;
                 z-index:10;
-                background-color:rgba(200,200,200,1);
+                background-color:rgba(255,200,0,1);
                 border-top-right-radius:10px;
                 border-bottom-right-radius:10px;
                 background-image:none;
@@ -194,7 +195,7 @@ class{
                 margin-bottom:10px;
             }
             .friendRQDataShower{
-                background-color:rgba(255,255,255,0.1);
+                background-color:rgba(0,200,255,0.1);
                 padding-left:20px;
                 padding-top:5px;
                 padding-bottom:5px;
@@ -245,7 +246,16 @@ class{
                 filter:grayscale(0%);
             }
         `;
+        container.styleElement=styleElement;
         container.appendChild(styleElement);
+        container.addEventListener("mouseover", ()=>{
+            container.style.backgroundImage=`none`;
+        });
+
+        var nclass=this;
+        container.addEventListener("mouseleave", ()=>{
+            nclass.CloseFriendRQList();
+        });
 
         document.body.appendChild(container);
     }
@@ -274,7 +284,7 @@ class{
                 margin-bottom:10px;
             }
             .friendDataShower{
-                background-color:rgba(150,150,150,0.9);
+                background-color:rgba(0,150,200,0.9);
                 padding-left:20px;
                 padding-top:5px;
                 padding-bottom:5px;
@@ -405,10 +415,31 @@ class{
         this.server__GetFriendList(this.uid);
     }
 
+
+
+
+    CloseFriendRQList(){
+        var container=document.getElementById('friendRequestList-container');
+        container.style.backgroundImage=`url('/images/icons/bell2.png')`;
+
+    }
+
     ShowFriendRequests(friendList){
         var nclass=this;
         var friendUids=Object.keys(friendList);
         var container=document.getElementById('friendRequestList-container');
+        if(friendUids.length>0){
+            this.CloseFriendRQList=function(){
+                var container=document.getElementById('friendRequestList-container');
+                container.style.backgroundImage=`url('/images/icons/bell3.png')`;
+            }
+        }   
+        else{
+            container.style.backgroundImage=`url('/images/icons/bell2.png')`;
+        }
+
+
+
         for(var friendUid of friendUids){
             var friend = friendList[friendUid];
             var friendElement=document.createElement('div');

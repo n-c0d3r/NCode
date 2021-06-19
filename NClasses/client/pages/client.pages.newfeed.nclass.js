@@ -115,7 +115,7 @@ class{
                 font-size:30px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 font-weight:500px;
-                width:100%;
+                width:calc(100% - 40px);
                 height:50px;
                 padding-left:20px;
                 padding-right:20px;
@@ -238,7 +238,7 @@ class{
         this.postElements[post.id]=post;
 
         postElement.innerHTML=`
-            <div style='display:flex;flex-flow:row;height:80px;width:100%;margin-bottom:10px;padding-left:10px;padding-right:10px;'>
+            <div style='display:flex;flex-flow:row;height:80px;width:calc(100% - 20px);margin-bottom:10px;padding-left:10px;padding-right:10px;'>
                 <div class='postOwnerAvatar' style="background-image:url('${avatarUrl}')" onclick="window.location.href='${window.origin+'/userInfo/'+post.owner}';">
                 </div>
                 <div class='postOwnerName' onclick='window.location.href=window.origin+"/posts/${post.id}";'>${post.ownerData.name}</div>
@@ -372,7 +372,7 @@ class{
             var innerHTML=`
             <div class='comment'>
                 <div class='comment-info'>
-                    <div class='comment-info-owner-avt' style="background-image:url('${avatarUrl}');">
+                    <div class='comment-info-owner-avt' style="background-image:url('${avatarUrl}');" onclick="window.location.href=window.origin+'/userInfo/${comment.owner}'">
 
                     </div>
                     <div class='comment-info-owner-name'>

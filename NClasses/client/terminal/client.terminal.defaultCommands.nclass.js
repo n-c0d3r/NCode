@@ -7,11 +7,29 @@
 class{
     constructor(){
 
+        this.avatarCount=7;
+
         var nclass=this;
         this.defaultCommands={
             "addfriend":{
                 method:(id)=>{
                     
+                }
+            },
+            "uid":{
+                method:(input)=>{
+                    var uid=firebase.auth().currentUser.uid;
+                    nclass.defaultCommands.terminal.log.jsMethod("uid",`${uid}`,"rgb(200,255,200)");
+                }
+            },
+            "postIds":{
+                method:(input)=>{
+                    nclass.LogPostIdsToTerminal();
+                }
+            },
+            "chatRoomIds":{
+                method:(input)=>{
+                    nclass.LogChatRoomIdsToTerminal();
                 }
             },
             "app":{
@@ -90,6 +108,123 @@ class{
                     }
                 }
             },
+            "storage":{
+                "filels":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            nclass.LogFiles(modulePath);
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("storage dir",`"${input}" Not Found!!!`,"red");
+                        }
+                    }
+                },
+                "dirls":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            nclass.LogDirs(modulePath);
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("storage dir",`"${input}" Not Found!!!`,"red");
+                        }
+                    }
+                },
+                "mkdir":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            nclass.CreateItem(modulePath,'folder');
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("storage mkdir",`"${input}" Not Found!!!`,"red");
+                        }
+                    }
+                },
+                "rmdir":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            if(input!='storage')
+                                nclass.RemoveItem(modulePath,'folder');
+                            else{
+                                nclass.defaultCommands.terminal.log.jsMethod("storage rmdir",`Cannot Remove "Storage"!!!`,"red");
+
+                            }
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("storage mkdir",`"${input}" Not Found!!!`,"red");
+                        }
+                    }
+                },
+                "del":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            if(input!='storage')
+                                nclass.RemoveItem(modulePath,'file');
+                            else{
+                                nclass.defaultCommands.terminal.log.jsMethod("storage del",`Cannot Remove "Storage"!!!`,"red");
+
+                            }
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("storage mkdir",`"${input}" Not Found!!!`,"red");
+                        }
+                    }
+                }
+            },
             "terminal":{
                 "log":{
                     jsMethod:(title,content,content_color)=>{
@@ -139,6 +274,123 @@ class{
         
     }
 
+    //LogChatRoomIdsToTerminal
+
+    LogChatRoomIdsToTerminal(){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__LogChatRoomIdsToTerminal(uid);
+    }
+
+    server__LogChatRoomIdsToTerminal(uid,clientSocket){
+        var usersDataNClass=framework.ImportNClass('server.user.data');
+        var users=usersDataNClass.users;
+        var user=users[uid];
+        this.client__LogChatRoomIdsToTerminal(user.chatrooms,clientSocket);
+    }
+
+    client__LogChatRoomIdsToTerminal(chatroomIds){
+        chatroomIds=Object.keys(chatroomIds);
+        for(var chatroomId of chatroomIds){
+            this.defaultCommands.terminal.log.jsMethod(`chatroomIds`,`${chatroomId}`,'rgb(200,200,200)');
+        }
+    }
+
+    LogPostIdsToTerminal(){
+        var uid=firebase.auth().currentUser.uid;
+        this.server__LogPostIdsToTerminal(uid);
+    }
+
+    server__LogPostIdsToTerminal(uid,clientSocket){
+        var usersDataNClass=framework.ImportNClass('server.user.data');
+        var users=usersDataNClass.users;
+        var user=users[uid];
+        this.client__LogPostIdsToTerminal(user.posts,clientSocket);
+    }
+
+    client__LogPostIdsToTerminal(postIds){
+        postIds=Object.keys(postIds);
+        for(var postId of postIds){
+            this.defaultCommands.terminal.log.jsMethod(`postIds`,`${postId}`,'rgb(200,200,200)');
+        }
+    }
+
+    RemoveItem(path,type){
+        this.server__RemoveItem(path,type);
+    }
+
+    server__RemoveItem(path,type){
+        var fs=modules.fs;
+        try{
+            if(type=="folder"){
+                fs.rmdirSync(framework.userStoragesDirPath+"/"+path, { recursive: true });
+            }
+            else{
+                fs.unlinkSync(framework.userStoragesDirPath+"/"+path);
+            }
+        }
+        catch{
+
+        }
+    }
+
+    LogFiles(path){
+        this.server__LogFiles(path);
+    }
+
+    server__LogFiles(path,clientSocket){
+        var fs=modules.fs;
+        try{
+            var fileNames=[];
+            var itemNames=fs.readdirSync(framework.userStoragesDirPath+"/"+path);
+            for(var itemName of itemNames){
+                if(fs.statSync(framework.userStoragesDirPath+"/"+path+"/"+itemName).isFile()){
+                    fileNames.push(itemName);
+                }
+            }
+            this.client__LogFiles(fileNames,clientSocket);
+        }
+        catch{
+
+        }
+    }
+
+    client__LogFiles(files){
+        for(var file of files){
+            this.defaultCommands.terminal.log.jsMethod(`storage filels`,`${file}`,'rgb(100,255,0)');
+        }
+    }
+
+    LogDirs(path){
+        this.server__LogDirs(path);
+    }
+
+    server__LogDirs(path,clientSocket){
+        var fs=modules.fs;
+        try{
+            var dirNames=[];
+            var itemNames=fs.readdirSync(framework.userStoragesDirPath+"/"+path);
+            for(var itemName of itemNames){
+                if(fs.statSync(framework.userStoragesDirPath+"/"+path+"/"+itemName).isDirectory()){
+                    dirNames.push(itemName);
+                }
+            }
+            this.client__LogDirs(dirNames,clientSocket);
+        }
+        catch{
+
+        }
+    }
+
+    client__LogDirs(dirs){
+        for(var dir of dirs){
+            this.defaultCommands.terminal.log.jsMethod(`storage dirls`,`${dir}`,'rgb(100,255,0)');
+        }
+    }
+
+    CreateItem(newStrPath,type){
+        var ideNClass=framework.ImportNClass('client.pages.ide');
+        ideNClass.CreateItem(newStrPath,type);
+    }
 
     LoadCommands(){
         var nclass=this;
@@ -259,7 +511,30 @@ class{
     }
 
     ChangeChatRoomName(name,roomId){
-        console.log(name,roomId);
+        this.server__ChangeChatRoomName(name,roomId);
+    }
+
+    server__ChangeChatRoomName(name,roomId){
+        var chatRoomsNClass=framework.ImportNClass('server.user.chatrooms');
+        chatRoomsNClass.rooms[roomId].name=name;
+        chatRoomsNClass.SaveRoomsData();
+    }
+
+    async ChangeUserName(name){
+        var uid=framework.ImportNClass('client.user').userId;
+        var userData=await firebase.firestore().collection('users').doc(uid).get();
+        userData=userData.data();
+        userData.name=name;
+        firebase.firestore().collection('users').doc(uid).set(userData);
+    }
+
+    async ChangeUserAvatar(id){
+        var uid=framework.ImportNClass('client.user').userId;
+        var userData=await firebase.firestore().collection('users').doc(uid).get();
+        userData=userData.data();
+        userData.avatarId=id;
+        document.getElementById('avt').style.backgroundImage=`url('/images/avatar/avt-${id}.png')`;
+        firebase.firestore().collection('users').doc(uid).set(userData);
     }
 
     client__JSExecute(data,path,pathInCommand,fullPath){
@@ -268,6 +543,18 @@ class{
         var defaultCommands=framework.ImportNClass("client.terminal.defaultCommands").defaultCommands;
 
         var terminalCommandsNClass=framework.ImportNClass("client.terminal.defaultCommands");
+
+        var ExecuteCommand=function(command){
+            terminalNClass=framework.ImportNClass("client.terminal");
+            terminalNClass.ExecuteCommand(command);
+        }
+
+        var ChangeUserName=function(name){
+            terminalCommandsNClass.ChangeUserName(name);
+        }
+        var ChangeUserAvatar=function(name){
+            terminalCommandsNClass.ChangeUserAvatar(name);
+        }
 
         var ChangeChatRoomName=function(name,roomId){
             terminalCommandsNClass.ChangeChatRoomName(name,roomId);
@@ -355,6 +642,8 @@ class{
             base.method=method;
             SaveCommand();
         }
+
+        
 
         ${data}
         
