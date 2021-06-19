@@ -241,7 +241,9 @@ class{
             <div style='display:flex;flex-flow:row;height:80px;width:calc(100% - 20px);margin-bottom:10px;padding-left:10px;padding-right:10px;'>
                 <div class='postOwnerAvatar' style="background-image:url('${avatarUrl}')" onclick="window.location.href='${window.origin+'/userInfo/'+post.owner}';">
                 </div>
-                <div class='postOwnerName' onclick='window.location.href=window.origin+"/posts/${post.id}";'>${post.ownerData.name}</div>
+                <div class='postOwnerName' onclick='window.location.href=window.origin+"/posts/${post.id}";'>${post.ownerData.name} 
+                    <div style="font-size:15px;display:flex;flex-flow:column;flex-direction:column-reverse;padding-bottom:30px;">(id: ${post.id})</div>
+                </div>
             </div>
             <div style='width:100%;height:1px;background-color:rgba(0,0,0,0.2);'></div>
             
