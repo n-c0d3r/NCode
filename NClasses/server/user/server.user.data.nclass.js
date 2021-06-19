@@ -29,9 +29,18 @@ class{
         var newUser={
             'friends':new Object(),
             'friendRequests':new Object(),
+            "chatrooms":new Object(),
             'sharedPosts':new Object(),
             'posts':new Object()
         };
+        var posts=framework.ImportNClass('server.user.posts').posts;
+        var postIds=Object.keys(posts);
+        for(var postId of postIds){
+            var post=posts[postId];
+            if(post.privacy=="global"){
+                newUser.sharedPosts[postId]=postId;
+            }
+        }
         this.users[uid]=newUser;
         this.SaveUsersData();
     }

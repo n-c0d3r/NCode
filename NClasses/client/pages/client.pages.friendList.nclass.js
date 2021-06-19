@@ -17,11 +17,11 @@ class{
         var styleElement=document.createElement('style');
         styleElement.textContent=`
             #addFriendBtn{
-                top:180px;
+                top:175px;
                 left:60px;
                 position:fixed;
-                width:60px;
-                height:60px;
+                width:50px;
+                height:50px;
                 position:fixed;
                 background-color:rgba(255,255,255,0.85);
                 border-top-right-radius:10px;
@@ -142,11 +142,11 @@ class{
         var styleElement=document.createElement('style');
         styleElement.textContent=`
             #friendRequestList-container{
-                top:60px;
+                top:65px;
                 left:60px;
                 position:fixed;
-                width:60px;
-                height:60px;
+                width:50px;
+                height:50px;
                 position:fixed;
                 background-color:rgba(255,255,255,0.85);
                 border-top-right-radius:10px;
@@ -442,6 +442,7 @@ class{
                 var userNClass=framework.ImportNClass("client.user");
                 userNClass.DeclineFriendRequest(friend.uid);
                 friendElement.remove();
+                window.location.href=window.location.href;
             });
 
             friendDataShower.appendChild(unFriend);
@@ -456,6 +457,7 @@ class{
                 var userNClass=framework.ImportNClass("client.user");
                 userNClass.ApplyFriendRequest(friend.uid);
                 friendElement.remove();
+                window.location.href=window.location.href;
             });
 
             friendDataShower.appendChild(apply);
@@ -485,6 +487,10 @@ class{
             friendAvt.className=`friendAvt`;
             friendAvt.style.backgroundImage=`url('/images/avatar/avt-${friend.avatarId}.png')`;
 
+            friendAvt.addEventListener('click',()=>{
+                window.location.href=`${window.origin}/userInfo/${friend.uid}`;
+            });
+
             friendDataShower.appendChild(friendAvt);
 
             var friendName=document.createElement('div');
@@ -509,6 +515,7 @@ class{
                 var userNClass=framework.ImportNClass("client.user");
                 userNClass.Unfriend(friend.uid);
                 friendElement.remove();
+                window.location.href=window.location.href;
             });
 
             friendDataShower.appendChild(unFriend);

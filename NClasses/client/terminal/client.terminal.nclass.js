@@ -64,7 +64,7 @@ class{
             var command=this.GetCommand(commandPath);
             command.method(input);
         }
-        catch{
+        catch(err){
             this.commands.terminal.log.jsMethod("ERROR","COMMAND NOT FOUND!!!","red");
         }
         

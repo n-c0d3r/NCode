@@ -144,11 +144,11 @@ class{
             newNode.file=node.file;
 
             if(true){
-                var paddingLeft=4;
-                for(var i=0;i<node.file.path.length-2;i++){
-                    paddingLeft+=4;
-                }
-                newNode.style.paddingLeft=`${paddingLeft}px`;
+                // var marginLeft=4;
+                // for(var i=0;i<node.file.path.length-2;i++){
+                //     marginLeft+=4;
+                // }
+                // newNode.style.marginLeft=`${marginLeft}px`;
                 var textContentElement=document.createElement("div");
                 textContentElement.className="ide-file-name-in-explorer";
 
@@ -183,15 +183,15 @@ class{
                 }
 
                 var iconElement=document.createElement("div");
+                iconElement.className=`fileIcon`;
                 iconElement.style=`
                     width:17px;
                     height:17px;
                     background-size:cover;
                     background-image:url('${icon_url}');
-                    margin-right:5px;
+                    margin-right:0px;
                     transition:0.2s;
-                    position:absolute;
-                    
+                    min-width: 17px;
                 `;
 
                 var itemNameContainer=document.createElement("div");
@@ -205,8 +205,7 @@ class{
                 newNode.appendChild(itemNameContainer); 
                 newNode.textContentElement=textContentElement;
                 newNode.iconElement=iconElement;
-                
-                
+
             }
 
             
@@ -635,6 +634,68 @@ class{
 
 
 
+
+                        (()=>{
+                            var btn=document.createElement("div");
+                            var parts=newNode.file.name.split('.');
+                            if(parts[parts.length-1]=="nc"){
+                                btn.style=`
+                                padding-left:10px;
+                                font-size:13px;
+                                -webkit-touch-callout: none;
+                                -webkit-user-select: none;
+                                -khtml-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                color:rgb(200,200,200);
+                                display:flex;
+                                flex-flow:row;
+                                width:300px;
+                                margin-top:10px;
+                                margin-bottom:10px;
+                            `;
+                            
+                            var textElement=document.createElement("div");
+                            textElement.textContent="NC Execute";
+                            
+                            btn.appendChild(textElement);
+
+
+                            var done=function(){
+                                document.body.contextMenu.style=`
+                                display:none;
+                                transition:5s;
+                                background-color:rgba(0,0,0,0);
+                                `;
+                                document.body.contextMenu.status="un-visible";
+                                var terminal=framework.ImportNClass("client.terminal");
+                                var path=[...newNode.file.path];
+                                path[0]="storage";
+                                var strPath=path[0];
+                                for(var i=1;i<path.length;i++){
+                                    strPath+="/"+path[i];
+                                }
+                                var command=`@nc.execute:${strPath}`;
+                                terminal.ExecuteCommand(command);
+                            }
+
+                            textElement.addEventListener("click",()=>{
+                                done();
+                            });
+
+                            }
+                            else{
+                                
+                            }
+
+                            
+
+                            return btn;
+                        })(),
+
+
+
                         (()=>{
                             var btn=document.createElement("div");
                             btn.style=`
@@ -778,6 +839,7 @@ class{
         };
 
         this.rootFileInExpl=addToExplorer(this.rootFileInExpl,false,"Storage");
+
 
     }
 

@@ -165,18 +165,14 @@ class{
                     background-color:white;
                 }
                 .ide-file-in-explorer{
+                    padding-left:12px;
                     color:rgb(200,200,200);
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                     
                 }
                 .ide-file-name-in-explorer{
                     font-size:15px;
-                    padding-left:22px;
-                    -webkit-touch-callout: none;
-                    -webkit-user-select: none;
-                    -khtml-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
+                    padding-left:4px;
                     user-select: none;
                 }
             </style>

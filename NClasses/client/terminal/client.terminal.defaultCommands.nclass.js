@@ -9,6 +9,11 @@ class{
 
         var nclass=this;
         this.defaultCommands={
+            "addfriend":{
+                method:(id)=>{
+                    
+                }
+            },
             "app":{
 
                 "goto":{
@@ -56,6 +61,30 @@ class{
                         }
                         else{
                             nclass.defaultCommands.terminal.log.jsMethod("js execute",`"${input}" Not Found!!!`,"red");
+                        }
+                        
+                    }
+                }
+            },
+            "nc":{
+                "execute":{
+                    method:(input)=>{
+                        var modulePath="";
+                        var start=0;
+                        var pathInCommand="";
+                        while(input[start]==" "){
+                            start++;
+                        }
+                        if(input.substring(start,start+7)=="storage"){
+                            pathInCommand=input.substring(start,input.length);
+                            start=start+8;
+                            modulePath=input.substring(start,input.length);
+                            var uid=firebase.auth().currentUser.uid;
+                            modulePath=uid+'/'+modulePath;
+                            nclass.server__NCExecute(modulePath,pathInCommand);
+                        }
+                        else{
+                            nclass.defaultCommands.terminal.log.jsMethod("nc execute",`"${input}" Not Found!!!`,"red");
                         }
                         
                     }
@@ -178,36 +207,126 @@ class{
         
     }
 
+    server__NCExecute(path,pathInCommand,clientSocket){
+        var fs=modules.fs;
+        if(fs.existsSync(framework.userStoragesDirPath+"/"+path)){
+            var data=fs.readFileSync(framework.userStoragesDirPath+"/"+path).toString();
+            this.client__NCExecute(data,path,pathInCommand,framework.userStoragesDirPath+"/"+path,clientSocket);
+
+        }
+    }
+
+    client__NCExecute(data,path,pathInCommand,fullPath){
+        var lines=data.split('\n');
+        var terminalNClass=framework.ImportNClass("client.terminal");
+        for(var line of lines){
+            terminalNClass.ExecuteCommand(line);
+        }
+    }
+
+
+    CreatePost(post){
+        var generatedPostId=Date.now().toString();
+        this.server__CreatePost(post,generatedPostId);
+        return generatedPostId;
+    }
+
+    
+    server__CreatePost(post,generatedPostId){
+        var postsNClass=framework.ImportNClass('server.user.posts');
+        postsNClass.CreatePost(post,generatedPostId);
+    }
+
+    CreateChatRoom(chatRoom,id){
+        this.server__CreateChatRoom(chatRoom,id);
+    }
+
+    server__CreateChatRoom(chatRoom,id){
+        var serverChatrooms=framework.ImportNClass('server.user.chatrooms');
+        serverChatrooms.CreateRoom(chatRoom,id);
+
+    }
+
+    AddParticipantToChatRoom(crId,uid){
+        this.server__AddParticipantToChatRoom(crId,uid);
+        console.log(crId,uid);
+    }
+
+    server__AddParticipantToChatRoom(crId,uid){
+        var serverChatrooms=framework.ImportNClass('server.user.chatrooms');
+        serverChatrooms.AddParticipantToChatRoom(crId,uid);
+
+    }
+
+    ChangeChatRoomName(name,roomId){
+        console.log(name,roomId);
+    }
+
     client__JSExecute(data,path,pathInCommand,fullPath){
         var finalCommandJS=`
         
         var defaultCommands=framework.ImportNClass("client.terminal.defaultCommands").defaultCommands;
 
+        var terminalCommandsNClass=framework.ImportNClass("client.terminal.defaultCommands");
+
+        var ChangeChatRoomName=function(name,roomId){
+            terminalCommandsNClass.ChangeChatRoomName(name,roomId);
+        }
+
+        var CreateChatRoom=function(name){
+            var owner=firebase.auth().currentUser.uid;
+            var chatRoom={
+                "comments":[],
+                "name":name,
+                "owner":owner,
+                "participants":new Object()
+            }
+            var id=Date.now().toString();
+            chatRoom.participants[owner]=owner;
+            terminalCommandsNClass.CreateChatRoom(chatRoom,id);
+        }
+
+        var AddSomeoneToChatRoom=function(crId,uid){
+            terminalCommandsNClass.AddParticipantToChatRoom(crId,uid);
+        }
 
         var CreatePost=function(options,callback){
             var post={
                 'owner':firebase.auth().currentUser.uid,
-                'innerHTML':''
+                'innerHTML':'',
+                'reachs':new Object(),
+                'comments':[]
             }
 
             Object.assign(post, options);
 
             post.AddTitle=function(title){
-                post.innerHTML+='<h>'+title+'</h>';
+                post.innerHTML+='<h class="newfeed-post-title">'+title+'</h>';
             }
 
             post.AddContent=function(content){
                 var contentElement=document.createElement('div');
                 contentElement.textContent=content;
-                post.innerHTML+=(contentElement.innerHTML);
+                contentElement.className='newfeed-post-content';
+                var demoElement=document.createElement('div');
+                demoElement.appendChild(contentElement);
+                post.innerHTML+=demoElement.innerHTML;
+            }
+
+            post.AddInnerHTML=function(innerHTML){
+                this.innerHTML+=innerHTML;
             }
 
             post.AddImage=function(imageUrl){
                 
             }
 
+            post.Demo=function(){
+            }
+            
             post.Push=function(){
-                console.log(post);
+                var nclass=framework.ImportNClass("client.terminal.defaultCommands");
+                nclass.CreatePost(post);
             }
 
             return post;

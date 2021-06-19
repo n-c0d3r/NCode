@@ -25,10 +25,13 @@ class{
         try{
             
             var fireStore=framework.ImportNClass("server.firebase.firestore").fireStore;
-            var fromFirestoreData=await fireStore.collection("users").doc(targetUid).get().data();
-            var localServerData=new Object();
+            var fromFirestoreData=await fireStore.collection("users").doc(targetUid).get();
+            fromFirestoreData=fromFirestoreData.data();
+            var userDataNClass=framework.ImportNClass("server.user.data");
+            var localServerData=userDataNClass.users[targetUid];
+            Object.assign(fromFirestoreData,localServerData);
     
-            this.client__GetTargetUserInfo("",clientSocket);
+            this.client__GetTargetUserInfo(fromFirestoreData,clientSocket);
 
         }
         catch{
@@ -38,6 +41,11 @@ class{
 
     client__GetTargetUserInfo(user){
         this.targetUser=user;
+        this.SetupPage();
+    }
+
+    SetupPage(){
+        var user=this.targetUser;
     }
 
 }

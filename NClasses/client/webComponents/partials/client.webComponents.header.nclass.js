@@ -215,23 +215,23 @@ class{
                                 </div>
                             </div>
 
-                            
+                            <!--
                             <div class="header-pageA-container">
                                 <div class="header-pageA" style="background-image:url('/images/icons/bell.png');" onclick="window.location.href='${window.origin+"/notification"}';">
                                     <div class="header-pageA-text">
                                         Notification
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
-                            
+                            <!--
                             <div class="header-pageA-container">
                                 <div class="header-pageA" style="background-image:url('/images/icons/setting.png');" onclick="window.location.href='${window.origin+"/setting"}';">
                                     <div class="header-pageA-text">
                                         Setting
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             
                         </div>
@@ -259,6 +259,9 @@ class{
                 
                 `;
                 nclass.avt=document.getElementById("avt");
+                nclass.avt.addEventListener('click',()=>{
+                    window.location.href=window.origin+'/userInfo/'+firebase.auth().currentUser.uid;
+                });
                 nclass.SetUpAvt();
                 nclass.logoutBtn=document.getElementById("log-out");
                 nclass.logoutBtn.addEventListener("click",()=>{
